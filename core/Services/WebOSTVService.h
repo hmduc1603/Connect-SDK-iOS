@@ -99,6 +99,7 @@ typedef enum {
 #pragma mark - Native app to app
 
 // @cond INTERNAL
+- (void) sendPairingKey:(NSString *)pairingKey success:(SuccessBlock)success failure:(FailureBlock)failure;
 - (void) connectToApp:(NSString *)appId success:(WebAppLaunchSuccessBlock)success failure:(FailureBlock)failure;
 - (void) joinApp:(NSString *)appId success:(WebAppLaunchSuccessBlock)success failure:(FailureBlock)failure;
 - (void) connectToApp:(WebOSWebAppSession *)webAppSession joinOnly:(BOOL)joinOnly success:(SuccessBlock)success failure:(FailureBlock)failure;
