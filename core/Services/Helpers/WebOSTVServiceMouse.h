@@ -38,7 +38,7 @@ typedef enum {
 - (void) scroll:(CGVector)distance;
 - (void) click;
 - (void) button:(WebOSTVMouseButton)keyName;
-- (void) buttonString:(NSString *)keyString
+- (void) buttonString:(NSString *)keyString;
 - (void) disconnect;
 
 @end
