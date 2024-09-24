@@ -136,6 +136,12 @@
     }
 }
 
+-(void) buttonString:(NSString *)keyString
+{
+    NSString *buttonString = [NSString stringWithFormat:@"type:button\nname:%@\n\n", keyString];
+    [self sendPackage:buttonString];
+}
+
 - (void) sendPackage:(NSString*)package
 {
     if ([_mouseSocket readyState] == LGSR_OPEN)

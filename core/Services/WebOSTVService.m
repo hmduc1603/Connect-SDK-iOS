@@ -1723,6 +1723,34 @@
     [command send];
 }
 
+#pragma mark - Screen
+
+- (void)screenOff:(SuccessBlock)success failure:(FailureBlock)failure
+{
+    NSURL *URL = [NSURL URLWithString:@"ssap://com.webos.service.tvpower/power/turnOffScreen"];
+
+    NSMutableDictionary *payload = [NSMutableDictionary new];
+    [payload setObject:@"active" forKey:@"standbyMode"];
+
+    ServiceCommand *command = [ServiceAsyncCommand commandWithDelegate:self.socket target:URL payload:payload];
+    command.callbackComplete = success;
+    command.callbackError = failure;
+    [command send];
+}
+
+- (void)screenOn:(SuccessBlock)success failure:(FailureBlock)failure
+{
+    NSURL *URL = [NSURL URLWithString:@"ssap://com.webos.service.tvpower/power/turnOnScreen"];
+
+    NSMutableDictionary *payload = [NSMutableDictionary new];
+    [payload setObject:@"active" forKey:@"standbyMode"];
+
+    ServiceCommand *command = [ServiceAsyncCommand commandWithDelegate:self.socket target:URL payload:payload];
+    command.callbackComplete = success;
+    command.callbackError = failure;
+    [command send];
+}
+
 - (void) powerOnWithSuccess:(SuccessBlock)success failure:(FailureBlock)failure
 {
     [self sendNotSupportedFailure:failure];
