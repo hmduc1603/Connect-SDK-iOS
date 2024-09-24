@@ -116,4 +116,8 @@ typedef void (^ SystemInfoSuccessBlock)(NSArray *featureList);
 - (void)getSystemInfoWithSuccess:(SystemInfoSuccessBlock)success failure:(FailureBlock)failure;
 // @endcond
 
+// @cond SCREEN
+- (void) screenOff:(SuccessBlock)success failure:(FailureBlock)failure;
+- (void) screenOn:(SuccessBlock)success failure:(FailureBlock)failure;
+
 @end
