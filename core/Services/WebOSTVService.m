@@ -1134,6 +1134,18 @@
     [command send];
 }
 
+- (void)sendCommand:(NSString *)address success:(SuccessBlock)success failure:(FailureBlock)failure
+{
+    NSString *urlString = [NSString stringWithFormat:@"ssap://%@", address];
+    NSURL *URL = [NSURL URLWithString:urlString];
+
+    ServiceCommand *command = [ServiceAsyncCommand commandWithDelegate:self.socket target:URL payload:nil];
+    command.callbackComplete = success;
+    command.callbackError = failure;
+    [command send];
+}
+
+
 - (void)seek:(NSTimeInterval)position success:(SuccessBlock)success failure:(FailureBlock)failure
 {
     [self sendNotSupportedFailure:failure];
@@ -1234,6 +1246,7 @@
     command.callbackError = failure;
     [command send];
 }
+
 
 - (void)getVolumeWithSuccess:(VolumeSuccessBlock)success failure:(FailureBlock)failure
 {
