@@ -330,70 +330,70 @@
 
 -(void) showAlert
 {
-    NSString *title = [[NSBundle mainBundle] localizedStringForKey:@"Connect_SDK_Pair_Title" value:@"Pairing with device" table:@"ConnectSDK"];
-    NSString *message = [[NSBundle mainBundle] localizedStringForKey:@"Connect_SDK_Pair_Request" value:@"Please confirm the connection on your device" table:@"ConnectSDK"];
-    NSString *ok = [[NSBundle mainBundle] localizedStringForKey:@"Connect_SDK_Pair_OK" value:@"OK" table:@"ConnectSDK"];
-    NSString *cancel = [[NSBundle mainBundle] localizedStringForKey:@"Connect_SDK_Pair_Cancel" value:@"Cancel" table:@"ConnectSDK"];
-
-    _pairingAlert = [UIAlertController alertControllerWithTitle:title
-                                                        message:message
-                                                 preferredStyle:UIAlertControllerStyleAlert];
-    if(self.pairingType == DeviceServicePairingTypePinCode || self.pairingType == DeviceServicePairingTypeMixed){
-        // Add a text field to the alert controller
-        [_pairingAlert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-            textField.keyboardType = UIKeyboardTypeNumberPad;
-        }];
-        message = [[NSBundle mainBundle] localizedStringForKey:@"Connect_SDK_Pair_Request_Pin" value:@"Please enter the pin code" table:@"ConnectSDK"];
-    }
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:cancel
-                                                           style:UIAlertActionStyleCancel
-                                                         handler:^(UIAlertAction *action) {
-        [self disconnect];
-    }];
-
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:ok
-                                                       style:UIAlertActionStyleDefault
-                                                     handler:^(UIAlertAction *action) {
-        if(self.pairingType == DeviceServicePairingTypePinCode || self.pairingType == DeviceServicePairingTypeMixed){
-            UITextField *textField = _pairingAlert.textFields.firstObject;
-            NSString *pairingCode = textField.text;
-            [self sendPairingKey:pairingCode success:nil failure:nil];
-        }
-    }];
+//    NSString *title = [[NSBundle mainBundle] localizedStringForKey:@"Connect_SDK_Pair_Title" value:@"Pairing with device" table:@"ConnectSDK"];
+//    NSString *message = [[NSBundle mainBundle] localizedStringForKey:@"Connect_SDK_Pair_Request" value:@"Please confirm the connection on your device" table:@"ConnectSDK"];
+//    NSString *ok = [[NSBundle mainBundle] localizedStringForKey:@"Connect_SDK_Pair_OK" value:@"OK" table:@"ConnectSDK"];
+//    NSString *cancel = [[NSBundle mainBundle] localizedStringForKey:@"Connect_SDK_Pair_Cancel" value:@"Cancel" table:@"ConnectSDK"];
+//
+//    _pairingAlert = [UIAlertController alertControllerWithTitle:title
+//                                                        message:message
+//                                                 preferredStyle:UIAlertControllerStyleAlert];
+//    if(self.pairingType == DeviceServicePairingTypePinCode || self.pairingType == DeviceServicePairingTypeMixed){
+//        // Add a text field to the alert controller
+//        [_pairingAlert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+//            textField.keyboardType = UIKeyboardTypeNumberPad;
+//        }];
+//        message = [[NSBundle mainBundle] localizedStringForKey:@"Connect_SDK_Pair_Request_Pin" value:@"Please enter the pin code" table:@"ConnectSDK"];
+//    }
+//    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:cancel
+//                                                           style:UIAlertActionStyleCancel
+//                                                         handler:^(UIAlertAction *action) {
+//        [self disconnect];
+//    }];
+//
+//    UIAlertAction *okAction = [UIAlertAction actionWithTitle:ok
+//                                                       style:UIAlertActionStyleDefault
+//                                                     handler:^(UIAlertAction *action) {
+//        if(self.pairingType == DeviceServicePairingTypePinCode || self.pairingType == DeviceServicePairingTypeMixed){
+//            UITextField *textField = _pairingAlert.textFields.firstObject;
+//            NSString *pairingCode = textField.text;
+//            [self sendPairingKey:pairingCode success:nil failure:nil];
+//        }
+//    }];
 
     // Add the actions to the alert controller
-    [_pairingAlert addAction:cancelAction];
-    [_pairingAlert addAction:okAction];
-    dispatch_on_main(^{
-        UIWindow *window = [UIApplication sharedApplication].keyWindow;
-        UIViewController *rootViewController = window.rootViewController;
-        [rootViewController presentViewController: _pairingAlert animated:YES completion:nil];
-    });
+//    [_pairingAlert addAction:cancelAction];
+//    [_pairingAlert addAction:okAction];
+//    dispatch_on_main(^{
+//        UIWindow *window = [UIApplication sharedApplication].keyWindow;
+//        UIViewController *rootViewController = window.rootViewController;
+//        [rootViewController presentViewController: _pairingAlert animated:YES completion:nil];
+//    });
 }
 
 -(void) showAlertWithTitle:(NSString *)title andMessage:(NSString *)message
 {
-    NSString *alertTitle = [[NSBundle mainBundle] localizedStringForKey:@"Connect_SDK_Pair_Title" value:title table:@"ConnectSDK"];
-    NSString *alertMessage = [[NSBundle mainBundle] localizedStringForKey:@"Connect_SDK_Pair_Request" value:message table:@"ConnectSDK"];
-    NSString *ok = [[NSBundle mainBundle] localizedStringForKey:@"Connect_SDK_Pair_OK" value:@"OK" table:@"ConnectSDK"];
-    if(!_pinAlertView){
-        _pinAlertView = [UIAlertController alertControllerWithTitle:title
-                                                            message:message
-                                                     preferredStyle:UIAlertControllerStyleAlert];
-
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:ok
-                                                           style:UIAlertActionStyleDefault
-                                                         handler:^(UIAlertAction *action) {
-        }];
-
-        // Add the actions to the alert controller
-        [_pinAlertView addAction:okAction];
-    }
-    dispatch_on_main(^{
-        UIWindow *window = [UIApplication sharedApplication].keyWindow;
-        UIViewController *rootViewController = window.rootViewController;
-        [rootViewController presentViewController: _pinAlertView animated:YES completion:nil];
-    });
+//    NSString *alertTitle = [[NSBundle mainBundle] localizedStringForKey:@"Connect_SDK_Pair_Title" value:title table:@"ConnectSDK"];
+//    NSString *alertMessage = [[NSBundle mainBundle] localizedStringForKey:@"Connect_SDK_Pair_Request" value:message table:@"ConnectSDK"];
+//    NSString *ok = [[NSBundle mainBundle] localizedStringForKey:@"Connect_SDK_Pair_OK" value:@"OK" table:@"ConnectSDK"];
+//    if(!_pinAlertView){
+//        _pinAlertView = [UIAlertController alertControllerWithTitle:title
+//                                                            message:message
+//                                                     preferredStyle:UIAlertControllerStyleAlert];
+//
+//        UIAlertAction *okAction = [UIAlertAction actionWithTitle:ok
+//                                                           style:UIAlertActionStyleDefault
+//                                                         handler:^(UIAlertAction *action) {
+//        }];
+//
+//        // Add the actions to the alert controller
+//        [_pinAlertView addAction:okAction];
+//    }
+//    dispatch_on_main(^{
+//        UIWindow *window = [UIApplication sharedApplication].keyWindow;
+//        UIViewController *rootViewController = window.rootViewController;
+//        [rootViewController presentViewController: _pinAlertView animated:YES completion:nil];
+//    });
 }
 
 -(void)dismissPinAlertView{
